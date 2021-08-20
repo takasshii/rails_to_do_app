@@ -1,0 +1,92 @@
+<div id="fh5co-page"> 
+  <div id="fh5co-main">
+    <div class="fh5co-narrow-content"> 
+      <div class="container">
+        <div class="main posts-index pt-3 d-flex flex-column card">
+        <% @posts.each do |post| %>
+        <% reminding_seconds = post.post_deadline - Time.now
+          reminding_seconds = post.post_deadline - Time.now
+          if(((reminding_seconds/(3600*12)).floor).abs >= 1)
+            day = (reminding_seconds/(3600*12)).floor
+            hour = ((reminding_seconds - (day*3600*12))/3600).floor
+            minutes = ((reminding_seconds - (day*3600*12) - (hour*3600))/60).floor
+            @date_criteria = day
+            if day==1
+              @remaining = "#{day}日#{hour}時間後"
+            elsif day > 1
+              @remaining = "#{day}日後"
+            elsif day==-1
+              @remaining = "#{day.abs}日#{hour.abs}時間前"
+            elsif day < -1
+              @remaining = "#{day.abs}日前"
+            end
+          elsif (((reminding_seconds/3600).floor).abs >= 1)
+            hour = (reminding_seconds/3600).floor
+            minutes = ((reminding_seconds - hour*3600)/60).floor
+            @date_criteria = 0
+            if hour > 3
+              @remaining = "#{hour}時間後"
+            elsif (hour>0 && hour<3) 
+              @remaining = "#{hour}時間#{minutes}分後"
+            elsif (hour<0 && hour>-3) 
+              @remaining = "#{hour.abs}時間#{minutes.abs}分前"
+            elsif hour < -3
+              @remaining = "#{hour.abs}時間前"
+            end
+          else
+            minutes = ((reminding_seconds)/60).floor
+            @date_criteria = 0
+            if minutes>=0
+              @remaining = "#{minutes}分後"
+            else
+              @remaining = "#{minutes.abs}分前"
+            end
+          end
+        %>
+          <div class="card-header">
+            <%= @remaining %>
+          </div>
+          <div class="card-body">
+            <div class="posts-index-item py-3">
+              <div class="posts-image-item px-4">
+                <img class="img_circle_small rounded-circle border mb-3" src="<%= "/user_images/#{post.user.image_name}" %>">
+              </div>
+              <%= link_to(post.user.name, "/users/#{post.user.id}", {class: "text-decoration-none fw-bolder text-dark fs-4"}) %>
+              <span class="float-end px-3">
+                <%= post.created_at.to_s(:datetime_jp) %>
+              </span>
+              <div>
+                <span><%= link_to(post.content, "/posts/#{post.id}", {class: "text-decoration-none fw-normal text-dark fs-4"}) %>
+                <button class="btn-secondary rounded-circle p-0"><%= link_to("-", "/posts/#{post.id}/destroy", {class: "text-decoration-none", method: "post"}) %></button></span>
+                <% if post.post_importance%>
+                  <span class="float-end me-3">
+                    <% if post.post_importance==3 %>
+                      <span class="badge bg-danger">高</span>
+                    <% elsif post.post_importance==2 %>
+                      <span class="badge bg-warning text-dark">中</span>
+                    <% elsif post.post_importance==1 %>
+                      <span class="badge bg-secondary">低</span>
+                    <%end%>
+                  </span>
+                <%end%>
+              </div>
+              <div>
+                <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+                  <%= link_to("/likes/#{post.id}/destroy",{class: "text-decoration-none", method: "post"}) do %>
+                    <span class="fa fa-heart like-btn-unlike"></span>
+                  <% end %>
+                <% else %>
+                <%= link_to("/likes/#{post.id}/create", {class: "text-decoration-none", method: "post"}) do %>
+                    <span class="fa fa-heart like-btn"></span>
+                  <% end %>
+                <% end %>
+                <%= @likes_count %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

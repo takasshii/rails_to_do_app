@@ -1,0 +1,27 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.width-200{
+    width: 200px;
+    text-align: left !important;
+}
+
+.img_circle {
+    width:  180px;
+    height: 180px;
+    object-fit: cover;
+    background-position: center center;
+}
+
+.img_circle_small {
+    width:  60px;
+    height: 60px;
+    object-fit: cover;
+    background-position: center;
+}
+
+.post-left {
+    float: left;
+}
+

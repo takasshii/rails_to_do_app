@@ -1,0 +1,52 @@
+<div id="fh5co-page"> 
+  <div id="fh5co-main">
+    <div class="fh5co-narrow-content mt-5"> 
+      <div class="container">
+        <div class="fw-bolder ms-4 mb-4">
+          <% if @post.post_deadline %>
+            <%= "#{@correct_remaining}まで" %>
+          <% else %>
+            <p>期限指定なし</p>
+          <% end %>
+        </div>
+        <div class="posts-image-item px-4">
+          <img class="img_circle_small rounded-circle border mb-3" src="<%= "/user_images/#{@user.image_name}" %>">
+        </div>
+        <%=link_to(@user.name,"/users/#{@user.id}", {class: "text-decoration-none fw-bolder text-dark fs-4"})%>
+        <span class="float-end">
+          <%= @post.created_at.to_s(:datetime_jp) %>
+        </span>
+        <div class="row">
+          <span class ="text-decoration-none fw-normal text-dark fs-4"><%= @post.content %></span>
+          <% if @post.post_importance%>
+            <span class="float-end px-3">
+              <% if @post.post_importance==3 %>
+                <span class="badge bg-danger">高</span>
+              <% elsif @post.post_importance==2 %>
+                <span class="badge bg-warning text-dark">中</span>
+              <% elsif @post.post_importance==1 %>
+                <span class="badge bg-secondary">低</span>
+              <%end%>
+            </span>
+          <%end%>
+        </div>
+        <% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
+          <%= link_to("/likes/#{@post.id}/destroy",{class: "text-decoration-none", method: "post"}) do %>
+            <span class="fa fa-heart like-btn-unlike"></span>
+          <% end %>
+        <% else %>
+        <%= link_to("/likes/#{@post.id}/create", {class: "text-decoration-none", method: "post"}) do %>
+            <span class="fa fa-heart like-btn"></span>
+          <% end %>
+        <% end %>
+        <%= @likes_count %>
+        <% if @post.user_id == @current_user.id %>
+          <div class="post-menus text-center">
+            <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+            <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

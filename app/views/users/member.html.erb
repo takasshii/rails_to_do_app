@@ -1,0 +1,29 @@
+<div id="fh5co-page"> 
+  <div id="fh5co-main">
+    <div class="fh5co-narrow-content"> 
+      <div class="container">  
+          <div class="text-center">
+            <h1 class="border-bottom border-primary border-2 d-inline-block mb-5">IDが<%= session[:share_id] %>のユーザー</h1>
+            <% @users.each do |user| %>
+              <div class="row">
+                <div class="card">
+                  <div class="">
+                    <img class="rounded-circle border my-3 img_circle" src="<%= "/user_images/#{user.image_name}" %>">
+                  </div>
+                  <div class="">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= link_to(user.name, "/users/#{user.id}", {class: "text-decoration-none fw-bolder text-dark fs-4"}) %></h5>
+                      <p class="card-text"><%= user.comment %></p>
+                      <div class="btn-group" role="group" aria-label="Basic outlined button group">
+                        <button type="button" class="btn btn-outline-primary col-md-3"><%= link_to("投稿", "/users/#{user.id}", {class: "nav-link text-decoration-none text-dark"}) %></button>
+                        <button type="button" class="btn btn-outline-primary col-md-3"><%= link_to("いいね", "/users/#{user.id}/likes", {class: "nav-link text-decoration-none text-dark"}) %></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+      </div>
+    </div>
+  </div>
+</div>

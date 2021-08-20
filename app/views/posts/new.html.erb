@@ -1,0 +1,52 @@
+<div id="fh5co-page"> 
+  <div id="fh5co-main">
+    <div class="fh5co-narrow-content"> 
+      <div class="container pt-5 text-center">
+      <h1 class="border-bottom border-primary border-2 d-inline-block mb-5">お願い</h1>
+        <div class="main posts-new d-flex flex-column">
+          <%= form_tag("/posts/create") do %>
+              <div class="form">
+                <div class="form-body">
+                  <div class="py-2 h-auto">
+                    <textarea name="content" class="fs-4 w-100"></textarea>
+                  </div>
+
+                  <div class="row">
+                    <div class="text-center py-4 col-md-6">
+                      <p>重要度</p>
+                      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="post_importance" value="3" id="btnRadio3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnRadio3">高</label>
+
+                        <input type="radio" class="btn-check" name="post_importance" value="2" id="btnRadio2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnRadio2">中</label>
+
+                        <input type="radio" class="btn-check" name="post_importance" value="1" id="btnRadio1" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnRadio1">低</label>
+                      </div>
+                    </div>
+
+                    <!-- flatpickr -->
+                    <div class="text-center py-4 col-md-6 px-5">
+                      <form class="p-4">
+                        <p>期限</p>
+                        <div class="input-group date mb-3" id="datetimepicker3" data-target-input="nearest">
+                          <input type="text" name="post_deadline" data-input class="form-control h-35px" data-target="#datetimepicker3" style='background:white'/>
+                          <span class="input-group-text" data-toggle>
+                            <i class="far fa-calendar-alt"></i>
+                          </span>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="text-center py-2">
+                    <input type="submit" value="投稿" class="btn btn-primary">
+                  </div>
+                </div>
+              </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

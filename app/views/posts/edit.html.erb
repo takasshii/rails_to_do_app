@@ -1,0 +1,27 @@
+<div id="fh5co-page"> 
+  <div id="fh5co-main">
+    <div class="fh5co-narrow-content"> 
+      <div class="container pt-5">  
+        <div class="main posts-new d-flex flex-column">
+            <%= form_tag("/posts/#{@post.id}/update") do %>
+              <div class="form">
+                <div class="form-body">
+                  <% @post.errors.full_messages.each do |message| %>
+                    <div class="form-error">
+                      <%= message %>
+                    </div>
+                  <% end %>
+                  <div class="py-2 h-auto">
+                    <textarea name="content" class="fs-4 w-100"><%= @post.content %></textarea>
+                  </div>
+                  <div class="text-center py-2">
+                    <input type="submit" value="保存" class="btn btn-primary">
+                  </div>
+                </div>
+              </div>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

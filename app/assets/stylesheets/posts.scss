@@ -1,0 +1,79 @@
+.width-200{
+    width: 200px;
+    margin: 0 auto;
+}
+
+.img_circle_small {
+    width:  60px;
+    height: 60px;
+    object-fit: cover;
+    background-position: center;
+}
+
+.posts-image-item {
+    float: left;
+}
+
+.like-btn {
+    color: #8899a6;
+}
+
+.like-btn-unlike {
+    color: #ff2581;
+}
+
+.img_circle_small {
+    width:  60px;
+    height: 60px;
+    object-fit: cover;
+    background-position: center;
+}
+  
+.post-menus {
+float: right;
+}
+
+.post-menus a, .post-menus input {
+color: #8899a6;
+text-decoration: underline;
+font-size: 14px;
+}
+
+#datapicker
+/* 日曜日：赤 */
+.flatpickr-calendar .flatpickr-innerContainer .flatpickr-weekdays .flatpickr-weekday:nth-child(7n + 1),
+.flatpickr-calendar .flatpickr-innerContainer .flatpickr-days .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n + 1) {
+    color: red;
+}
+ 
+/* 土曜日：青 */
+.flatpickr-calendar .flatpickr-innerContainer .flatpickr-weekdays .flatpickr-weekday:nth-child(7),
+.flatpickr-calendar .flatpickr-innerContainer .flatpickr-days .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n) {
+    color: blue;
+}
+
+.flatpickr-current-month {
+  display: flex;
+  justify-content: center;
+}
+
+.cur-year {
+  order : 1;
+}
+
+.cur-month:before  {
+   content: '年　';
+}
+
+.cur-month {
+  order: 2;
+}
+
+.flatpickr-current-month span.cur-month {
+  font-weight : 300;
+  padding-top : 4px;
+}
+
+.h-35px {
+    height: 35px;
+}
